@@ -62,8 +62,10 @@ header {
     margin: 0;
 }
 
+/* set font-size to 0 to remove space between menu items, remove margin */
 .menu-container {
     font-size: 0;
+    margin: 0;
 }
 
 .menu-container li {
