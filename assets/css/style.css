@@ -9,6 +9,10 @@
     background-color: #fff;
 }
 
+.bg-color-personal-info {
+    background-color: #f4f4f4;
+}
+
 .ui-menu-color-home {
     background-color: #e67e22;
 }
@@ -50,6 +54,7 @@ h4 {
 }
 
 /* set div in 3 reasons section to display as table */
+/* this was removed in a later video - as it messes up the positioning on mobile. Not sure why needed originally? */
 .row-table {
     display: table; 
 }
