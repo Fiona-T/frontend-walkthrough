@@ -5,6 +5,10 @@
     background-color: #676767;
 }
 
+.bg-color-three-reasons {
+    background-color: #fff;
+}
+
 .ui-menu-color-home {
     background-color: #e67e22;
 }
@@ -20,6 +24,7 @@
 .ui-menu-color-download {
     background-color: #525252;
 }
+
 
 /* ----------------------------------------Speical paddings/margins/text */
 
@@ -44,7 +49,26 @@ h4 {
     display: inline-block;
 }
 
-/* ----------------------------------------Heading */
+/* set div in 3 reasons section to display as table */
+.row-table {
+    display: table; 
+}
+
+/* div child of above, display as table cell so height is consistent */
+.section-column {
+    display: table-cell;
+    padding: 0 30px 30px;
+    float: none; /* in case any included in bootstrap styles */
+}
+
+.section-heading {
+    font-family: "Exo", sans-serif;
+    font-weight: 300;
+    margin-top: 25px;
+    margin-bottom: 40px;
+}
+
+/* ----------------------------------------Header */
 header {
     margin: 0;
 }
