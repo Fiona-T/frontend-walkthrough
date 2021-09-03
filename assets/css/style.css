@@ -295,3 +295,46 @@ footer {
     color: #fafafa;
     margin-bottom: 50px;
 }
+
+.timeline-item {
+    padding: 4em 2em 0em 2em;
+    position: relative; /* before after positioned against these */
+    color: #fafafa;
+    border-left: 1px solid;
+}
+
+.timeline-item p {
+    padding: 0;
+    margin: 0;
+}
+
+/* display the dates on the timeline using before pseudo element */
+.timeline-item:before {
+    content: attr(data-dates); /* content is the value from the data-dates attribute*/
+    position: absolute;
+    left: 2.5em;
+    top: 3em;
+    display: block;
+    font-family: "Exo", sans-serif;
+    font-weight: 500;
+    font-size: 0.8em;
+    padding: 0;
+    margin: 0;
+}
+
+/* display a circle on the timeline using pseudo element */
+.timeline-item:after {
+    width: 12px;
+    height: 12px;
+    display: block;
+    position: absolute;
+    top: 2.4em;
+    left: -6px;
+    border-radius: 12px;
+    content: '';
+    background: #fafafa;
+}
+
+.history-items {
+    margin-bottom: 30px;
+}
