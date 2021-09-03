@@ -13,6 +13,11 @@
     background-color: #f4f4f4;
 }
 
+.bg-color-work-history {
+    background-color: #9b59b6;
+}
+
+
 .ui-menu-color-home {
     background-color: #e67e22;
 }
@@ -66,6 +71,7 @@ h4 {
     float: none; /* in case any included in bootstrap styles */
 }
 
+.history-heading,
 .section-heading {
     font-family: "Exo", sans-serif;
     font-weight: 300;
@@ -282,4 +288,10 @@ footer {
 
 .progress-section {
     margin: 40px 20px;
+}
+
+/* ----------------------------------------Work History */
+.history-heading {
+    color: #fafafa;
+    margin-bottom: 50px;
 }
