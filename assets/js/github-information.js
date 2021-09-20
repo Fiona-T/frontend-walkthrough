@@ -1,5 +1,5 @@
 
-// user is the object being returned from GitHub API
+// user is the object being returned from GitHub API. Display user info
 function userInformationHTML(user) {
     console.log(user);
     // display username with link to their profile on github, avatar, following/ers, repos
@@ -15,6 +15,29 @@ function userInformationHTML(user) {
         Repos: ${user.public_repos}</p>
     </div>`;
 
+}
+
+// display the repo info. GitHub returns this as an array
+function repoInformationHTML(repos) {
+    if (repos.length == 0) {
+        return `<div class="clearfix repo-list">No repos!</div>`;
+    }
+    // array of the repos containing li with link to repo and its name
+    let listItemsHTML = repos.map(function(repo) {
+        return `
+            <li>
+                <a href="${repo.html_url}" target="_blank">${repo.name}</a>
+            </li>`;
+    });
+    return `
+        <div class="clearfix repo-list">
+            <p>
+                <strong>Repo list:</strong>
+            </p>
+            <ul>
+                ${listItemsHTML.join("\n")}
+            </ul>
+        </div>`
 }
 
 function fetchGitHubInformation(event) {
@@ -34,11 +57,18 @@ function fetchGitHubInformation(event) {
     
     // handle response from github API, pass userData to userInformationHTML, or display error
     $.when(
-        $.getJSON(`https://api.github.com/users/${username}`)
+        // call to github API for the user info
+        $.getJSON(`https://api.github.com/users/${username}`),
+        // call to github API for the repo info
+        $.getJSON(`https://api.github.com/users/${username}/repos`) 
         ).then(
-            function(response) {
-                let userData = response;
+            function(firstRepsonse, secondResponse) {
+                let userData = firstRepsonse[0];
+                let repoData = secondResponse[0];
+                // call function to display the userData in the div
                 $("#gh-user-data").html(userInformationHTML(userData));
+                // call function to display the repoData in the div
+                $("#gh-repo-data").html(repoInformationHTML(repoData));
             }, function(errorResponse) {
                 if (errorResponse.status === 404) {
                     $("#gh-user-data").html(`<h2>No info found for user ${username}</h2>`);
