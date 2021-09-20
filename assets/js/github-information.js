@@ -75,7 +75,14 @@ function fetchGitHubInformation(event) {
             }, function(errorResponse) {
                 if (errorResponse.status === 404) {
                     $("#gh-user-data").html(`<h2>No info found for user ${username}</h2>`);
-                } else {
+                // if the access denied status received, because of too many requests
+                } else if (errorResponse.status === 403){
+                    // get the date from the header from GitHub when quota will be reset, 
+                    // this is a UNIX timestamp, multiply by 1000 to get it into format and turn into date object
+                    let resetTime = new Date(errorResponse.getResponseHeader("X-RateLimit-Reset") * 1000);
+                    $("#gh-user-data").html(`<h4>Too many requests, please wait until ${resetTime.toLocaleTimeString()}</h4>`);
+                }
+                else {
                     console.log(errorResponse);
                     $("#gh-user-data").html(`<h2>Error: ${errorResponse.responseJSON.message}</h2>`);
                 }
