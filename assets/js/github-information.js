@@ -41,6 +41,9 @@ function repoInformationHTML(repos) {
 }
 
 function fetchGitHubInformation(event) {
+    // first set the divs where results are displayed to empty (from any previous request)
+    $("#gh-user-data").html("");
+    $("#gh-repo-data").html("");
     // jQuery get value in gh-uername field
     let username = $("#gh-username").val();
     // if no username (no text input into the field), display msg and exit function
@@ -78,3 +81,6 @@ function fetchGitHubInformation(event) {
                 }
             });
 }
+
+// only call the function to fetch the info from github once the DOM is loaded
+$(document).ready(fetchGitHubInformation);
